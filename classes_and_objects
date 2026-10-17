@@ -477,9 +477,9 @@ int main() {
     Resource res1(1201, "Drinking Water", "Essential",
                   1000, "Haridwar Relief Center");
 
-    cout << "====================================\n";
+    
     cout << "       SAHAY DISASTER MANAGEMENT\n";
-    cout << "====================================\n";
+    
 
     p1.displayPerson();
     v1.displayVictim();
