@@ -1,0 +1,172 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 1. Locations
+class Node
+{
+public:
+    int id;
+    string name, type;
+    float x, y;
+
+    Node()
+    {
+        id = 0;
+        x = y = 0;
+    }
+
+    void display()
+    {
+        cout << id << " " << name << " " << type << endl;
+    }
+};
+
+// 2. Roads
+class Edge
+{
+public:
+    int id, from, to;
+    float distance;
+
+    float getBaseWeight()
+    {
+        return distance;
+    }
+};
+
+// 3. Road conditions
+class RoadCondition
+{
+public:
+    int roadId, traffic, blocked;
+    float waterLevel;
+};
+
+// 4. Households
+class Household
+{
+public:
+    int id, locationId, members;
+    string address, phone;
+};
+
+// 5. People
+class Person
+{
+public:
+    int id, householdId, age, weak;
+    string name, status;
+};
+
+// 6. Disasters
+class Disaster
+{
+public:
+    int id, severity;
+    string type, status, startedOn;
+};
+
+// 7. Incidents
+class Incident
+{
+public:
+    int id, disasterId, locationId, victims;
+    string status;
+};
+
+// 8. Rescue teams
+class RescueTeam
+{
+public:
+    int id, capacity, locationId;
+    string name, type, status;
+};
+
+// 9. Assignments
+class Assignment
+{
+public:
+    int id, teamId, incidentId, peopleRescued;
+};
+
+// 10. Hospitals
+class Hospital
+{
+public:
+    int id, locationId, totalBeds, freeBeds;
+    string name;
+
+    bool canAdmit()
+    {
+        return freeBeds > 0;
+    }
+};
+
+// 11. Shelters
+class Shelter
+{
+public:
+    int id, locationId, capacity;
+    string name;
+};
+
+// 12. Supplies
+class Supply
+{
+public:
+    int id, locationId, quantity;
+    string item;
+};
+
+// Main function
+int main()
+{
+    Node n1;
+    n1.id = 1;
+    n1.name = "Clock Tower";
+    n1.type = "base";
+    n1.x = 0;
+    n1.y = 0;
+
+    Edge e1;
+    e1.id = 1;
+    e1.from = 1;
+    e1.to = 2;
+    e1.distance = 7;
+
+    Disaster d1;
+    d1.id = 1;
+    d1.type = "flood";
+    d1.severity = 4;
+    d1.status = "active";
+
+    RescueTeam t1;
+    t1.id = 1;
+    t1.name = "Team Alpha";
+    t1.type = "boat";
+    t1.capacity = 10;
+    t1.locationId = 1;
+    t1.status = "free";
+
+    Hospital h1;
+    h1.name = "Jolly Grant Hospital";
+    h1.freeBeds = 40;
+
+    n1.display();
+
+    cout << "Road distance: "
+         << e1.getBaseWeight() << " km" << endl;
+
+    cout << "Disaster: " << d1.type << endl;
+
+    cout << "Rescue team: " << t1.name << endl;
+
+    if (h1.canAdmit())
+        cout << "Hospital has available beds" << endl;
+    else
+        cout << "Hospital is full" << endl;
+
+    return 0;
+}
